@@ -81,6 +81,38 @@ Response
    }
 }
 ```
+# Delete Student (Make student inactive)
+
+```sh
+url: /students/:id
+method: DELETE
+params:
+        id : Integer
+Request Example: /students/1
+```
+Response
+```json
+{
+   "status": true,
+   "message": "Student deleted successfully."
+}
+```
+again check student info using /student/1
+```json
+{
+   "status": true,
+   "response": {
+      "id": 1,
+      "name": "Vinod Singh",
+      "rollNo": 1,
+      "admissionDate": "2016-03-21T00:00:00.000Z",
+      "active": false,
+      "createdAt": "2018-08-10T21:36:16.105Z",
+      "updatedAt": "2018-08-10T22:43:42.038Z",
+      "SemesterClassId": null
+   }
+}
+```
 
 # Create Professor
 
