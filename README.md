@@ -69,7 +69,16 @@ Response
 ```json
 {
    "status": true,
-   "message": "Student updated successfully."
+   "response": {
+      "id": 1,
+      "name": "Vinod Singh",
+      "rollNo": 1,
+      "admissionDate": "2016-03-21T00:00:00.000Z",
+      "active": true,
+      "createdAt": "2018-08-10T21:36:16.105Z",
+      "updatedAt": "2018-08-10T21:41:15.621Z",
+      "SemesterClassId": null
+   }
 }
 ```
 
