@@ -1,8 +1,11 @@
 const SemesterClass = require('../models').SemesterClass;
 const Professor = require('../models').Professor;
 const Student = require('../models').Student;
+
 module.exports = {
-  
+  // Post /classses
+
+  //create semester class
   create(req, res) {
     SemesterClass.findOrCreate(
         {where:{title:req.body.title}
@@ -24,6 +27,9 @@ module.exports = {
         error:error
       }))
   },
+
+  //GET /classes/:id
+
   retrieve(req, res) {
     return SemesterClass
       .findById(req.params.id)
@@ -41,6 +47,7 @@ module.exports = {
       })
       .catch(error => res.status(400).send(error));
   },
+  //list all classes
   list(req, res) {
     let pageSize = parseInt(req.query.pageSize, 10) || 20;
     let pageNumber = parseInt(req.query.pageNumber, 10) || 1;
@@ -60,8 +67,10 @@ module.exports = {
         error:error
       }));
   },
+
+  //POST /classes/:id/professor
+  //Add provided professor to a semester class.
   addProfessorToClass(req, res) {
-    console.log(req.params.id);
   return Professor
   .find({
       where: {
@@ -94,6 +103,10 @@ module.exports = {
       })
       .catch(error => res.status(400).send(error));
 },
+
+//GET /students/{id}/classes
+//Should return the semester classes student is part of (including the professor teaching the class).
+
 getClassStudents(req, res) {
     let pageSize = parseInt(req.query.pageSize, 10) || 20;
     let pageNumber = parseInt(req.query.pageNumber, 10) || 1;
@@ -115,12 +128,20 @@ getClassStudents(req, res) {
             model: Student,
           }
         ],
-        // include:[{model:SemesterClass,as:'semester_class'}]
       })
-      .then(semesterclass => res.status(200).send({
-        'status':true,
-        'response':semesterclass
-      }))
+      .then(semesterclass => {
+          if (!semesterclass.Students) {
+            return res.status(404).send({
+            status:false,
+            message: 'Provided class does not have any student.',
+            });
+        }
+        return res.status(200).send({
+
+          'status':true,
+          'response':semesterclass
+        });
+      })
       .catch(error => res.status(400).send({
        status:false,
         error:error

@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
   },{
     hooks: {
       afterCreate: (professor, options, cb)  => {
-        console.log(professor);
          Professor.update({
           universityStaffNo:professor.id
         }, {
