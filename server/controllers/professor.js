@@ -9,6 +9,8 @@ const CreateSchema = Joi.object().keys({
 });
 
 module.exports = {
+
+  //create professor
   create(req, res) {
     Joi.validate({ name: req.body.name, designation: req.body.designation }, CreateSchema, (err, value)=> {
       if(!(err === null)){
@@ -49,7 +51,7 @@ module.exports = {
       }));
   },
 
-
+//list all professors
   list(req, res) {
     let pageSize = parseInt(req.query.pageSize, 10) || 20;
     let pageNumber = parseInt(req.query.pageNumber, 10) || 1;
@@ -69,6 +71,7 @@ module.exports = {
         'error':error
       }));
   },
+  //get single professor info
   retrieve(req, res) {
     return Professor
       .findById(req.params.id)
