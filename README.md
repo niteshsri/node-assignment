@@ -1,9 +1,7 @@
-# Node Assignment
+# Node Assignment:_ Apis
 
-#Apis!
 # EndPoint : http://13.232.223.216:8000/api
 
-### A) Student APi's
 # Create Student
 ```sh
 url: /students/
@@ -414,4 +412,69 @@ Response
    ]
 }
 ```
+# List Professors
 
+```sh
+url: /professors/
+method: GET
+filter available:
+    pageSize: Integer(Elements per page. default:20)
+    pageNumber: Integer(default:1)
+```
+Response
+```json
+{
+   "status": true,
+   "response": [
+      {
+         "id": 12,
+         "name": "Sameer",
+         "universityStaffNo": "12",
+         "designation": "Applied Science",
+         "createdAt": "2018-08-10T21:32:10.131Z",
+         "updatedAt": "2018-08-10T21:32:10.156Z"
+      },
+      {
+         "id": 11,
+         "name": "Sameer",
+         "universityStaffNo": "11",
+         "designation": "Applied Science",
+         "createdAt": "2018-08-10T21:30:15.173Z",
+         "updatedAt": "2018-08-10T21:30:15.177Z"
+      },
+      {
+         "id": 10,
+         "name": "Sameer",
+         "universityStaffNo": "10",
+         "designation": "Applied Science",
+         "createdAt": "2018-08-10T21:30:08.170Z",
+         "updatedAt": "2018-08-10T21:30:08.174Z"
+      },
+      .
+      .
+      .
+  }
+  ```
+  # Get Professor Info
+
+```sh
+url: /professors/:id
+method: GET
+params:
+        id : Integer
+Request Example: /professors/1
+```
+Response
+```json
+{
+   "status": true,
+   "response": {
+      "id": 1,
+      "name": "Sameer Singh",
+      "universityStaffNo": "1",
+      "designation": "Applied Science",
+      "createdAt": "2018-08-10T21:27:32.567Z",
+      "updatedAt": "2018-08-10T21:27:32.618Z"
+   }
+}
+```
