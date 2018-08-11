@@ -1,6 +1,5 @@
 # Node Assignment
 
-#Apis!
 # EndPoint : http://13.232.223.216:8000/api
 
 ### A) Student APi's
@@ -234,5 +233,79 @@ Response
       "ProfessorId": null
    }
 }
+```
+# Add Student to Class
 
+```sh
+url: /classes/{id}/students
+method: POST
+params:
+        studentIds : Array of Student Id e.g.[3,5,6]
+```
+Request Example
+```json
+{
+"studentIds":[3,5,6]
+}
+```
+Response
+
+```json
+{
+   "status": true,
+   "response": [
+      {
+         "id": 6,
+         "name": "Nikhil",
+         "rollNo": 6,
+         "admissionDate": "2016-05-13T00:00:00.000Z",
+         "active": true,
+         "createdAt": "2018-08-10T21:39:28.170Z",
+         "updatedAt": "2018-08-11T00:13:32.923Z",
+         "SemesterClassId": 1,
+         "SemesterClass": {
+            "id": 1,
+            "title": "One",
+            "createdAt": "2018-08-10T23:49:56.758Z",
+            "updatedAt": "2018-08-10T23:49:56.758Z",
+            "ProfessorId": null
+         }
+      },
+      {
+         "id": 5,
+         "name": "Tushar",
+         "rollNo": 5,
+         "admissionDate": "2016-05-09T00:00:00.000Z",
+         "active": true,
+         "createdAt": "2018-08-10T21:39:11.349Z",
+         "updatedAt": "2018-08-11T00:13:32.923Z",
+         "SemesterClassId": 1,
+         "SemesterClass": {
+            "id": 1,
+            "title": "One",
+            "createdAt": "2018-08-10T23:49:56.758Z",
+            "updatedAt": "2018-08-10T23:49:56.758Z",
+            "ProfessorId": null
+         }
+      },
+      {
+         "id": 3,
+         "name": "Vipin",
+         "rollNo": 3,
+         "admissionDate": "2016-04-01T00:00:00.000Z",
+         "active": true,
+         "createdAt": "2018-08-10T21:38:46.016Z",
+         "updatedAt": "2018-08-11T00:13:32.923Z",
+         "SemesterClassId": 1,
+         "SemesterClass": {
+            "id": 1,
+            "title": "One",
+            "createdAt": "2018-08-10T23:49:56.758Z",
+            "updatedAt": "2018-08-10T23:49:56.758Z",
+            "ProfessorId": null
+         }
+         .
+         .
+         .
+}
 ```
