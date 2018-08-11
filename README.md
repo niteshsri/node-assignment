@@ -126,7 +126,7 @@ filter available:
         (if admissionYearAfter and admissionYearBefore both are present 
           then admissionYearAfter should be < admissionYearBefore e.g. result after 2017 and before 2018)
     active: Boolean
-e.g:GET http://13.232.223.216:8000/api/students?admissionYearAfter=2015&admissionYearBefore=2018&active=true&classes[]=1&classes=2&pageNumber=1&pageSize=10   
+e.g:GET http://13.232.223.216:8000/api/students?admissionYearAfter=2015&admissionYearBefore=2018&active=true&classes[]=1&classes[]=2&pageNumber=1&pageSize=10  
 
 Request Example: /students/1
 ```
