@@ -82,8 +82,8 @@ module.exports = {
    * '/api/students?admissionYearAfter=2017&active=true'
    * '/api/students?admissionYearBefore=2018&active=true'
    * '/api/students?admissionYearAfter=2017&admissionYearBefore=2018&active=true'
-   * '/api/students?admissionYearAfter=2017&admissionYearBefore=2018&active=true&classes[]=1&classes=2'
-   * '/api/students?admissionYearAfter=2017&admissionYearBefore=2018&active=true&classes[]=1&classes=2&pageNumber=1&pageSize=10'
+   * '/api/students?admissionYearAfter=2017&admissionYearBefore=2018&active=true&classes[]=1&classes[]=2'
+   * '/api/students?admissionYearAfter=2017&admissionYearBefore=2018&active=true&classes[]=1&classes[]=2&pageNumber=1&pageSize=10'
    **/
 
   list(req, res) {
@@ -117,7 +117,7 @@ module.exports = {
         }
         includeModel=[{
             model: SemesterClass,
-            as: 'SemesterClass',
+            // as: 'SemesterClass',
           }]
     }
     //condition for active
@@ -191,7 +191,10 @@ module.exports = {
         offset: offset,
         
         include:  includeModel,
-        include:[{model:SemesterClass}]
+        include:[{model:SemesterClass}],
+        order: [
+            ['updatedAt', 'DESC'],
+          ],
       })
       .then(student => res.status(200).send({
         status:true,
@@ -341,13 +344,15 @@ module.exports = {
  */
 
   addStudentToClass(req, res) {
-    if (typeof req.body.studentIds !== 'undefined') {
+    if ((typeof req.body.studentIds === 'undefined')) {
         return res.status(400).send({
           status:false,
           message: 'Kindly provide valid Student ids'
         });
       }  
+      console.log(req.body.studentIds);
     let studentIdArray = req.body.studentIds;
+   
     if(!studentIdArray.length){
         return res.status(400).send({
             'status':false,

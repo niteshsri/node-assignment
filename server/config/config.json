@@ -1,25 +1,25 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "nitesh12345",
     "database": "node1",
-    "host": "127.0.0.1",
+    "host": "node-assignment.cpo3vnshdrd9.ap-south-1.rds.amazonaws.com",
     "port":5432,
     "dialect": "postgres"
   },
   "test": {
     "username": "root",
-    "password": "root",
+    "password": "nitesh12345",
     "database": "node1",
-    "host": "127.0.0.1",
+    "host": "node-assignment.cpo3vnshdrd9.ap-south-1.rds.amazonaws.com",
     "port":5432,
     "dialect": "postgres"
   },
   "production": {
-   "username": "root",
-    "password": "root",
+    "username": "root",
+    "password": "nitesh12345",
     "database": "node1",
-    "host": "127.0.0.1",
+    "host": "node-assignment.cpo3vnshdrd9.ap-south-1.rds.amazonaws.com",
     "port":5432,
     "dialect": "postgres"
   }

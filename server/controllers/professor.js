@@ -60,7 +60,10 @@ module.exports = {
       .findAll(
         {
           limit: pageSize,
-          offset: offset
+          offset: offset,
+          order: [
+            ['updatedAt', 'DESC'],
+          ],
         })
       .then(professor => res.status(200).send({
           'status':true,

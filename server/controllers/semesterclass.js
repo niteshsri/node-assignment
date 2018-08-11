@@ -56,7 +56,11 @@ module.exports = {
      .findAll(
       {
         limit: pageSize,
-        offset: offset
+        offset: offset,
+        order: [
+          ['updatedAt', 'DESC'],
+        ],
+        include:[{model:Professor}],
       })
       .then(semesterclass => res.status(200).send({
         'status':true,
@@ -110,8 +114,7 @@ module.exports = {
 getClassStudents(req, res) {
     let pageSize = parseInt(req.query.pageSize, 10) || 20;
     let pageNumber = parseInt(req.query.pageNumber, 10) || 1;
-    
-    let offset = (pageNumber && pageNumber > 0) ? (pageNumber-1)*pageSize : 0;
+        let offset = (pageNumber && pageNumber > 0) ? (pageNumber-1)*pageSize : 0;
     return SemesterClass
     .findAll(
       {
@@ -130,12 +133,13 @@ getClassStudents(req, res) {
         ],
       })
       .then(semesterclass => {
-          if (!semesterclass.Students) {
-            return res.status(404).send({
-            status:false,
-            message: 'Provided class does not have any student.',
-            });
-        }
+        // console.log(semesterclass.data);
+        //   if (!semesterclass.dataValues.Students) {
+        //     return res.status(404).send({
+        //     status:false,
+        //     message: 'Provided class does not have any student.',
+        //     });
+        // }
         return res.status(200).send({
 
           'status':true,
