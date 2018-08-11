@@ -1,5 +1,6 @@
 # Node Assignment
 
+#Apis!
 # EndPoint : http://13.232.223.216:8000/api
 
 ### A) Student APi's
@@ -237,10 +238,10 @@ Response
 # Add Student to Class
 
 ```sh
-url: /classes/{id}/students
+url: /classes/{id}/professor
 method: POST
 params:
-        studentIds : Array of Student Id e.g.[3,5,6]
+        studentIds : Array
 ```
 Request Example
 ```json
@@ -253,59 +254,164 @@ Response
 ```json
 {
    "status": true,
+   "message": "Student updated successfully."
+}
+```
+
+# Add Professor to Class
+
+```sh
+url: /classes/{id}/professor
+method: POST
+params:
+        professor_id : Integer
+```
+Request Example
+```json
+{
+"professor_id":1
+}
+```
+Response
+
+```json
+{
+   "status": true,
+   "message": "Professor updated successfully."
+}
+```
+
+# List Classes
+
+```sh
+url: /classes/
+method: GET
+filter available:
+    pageSize: Integer(Elements per page. default:20)
+    pageNumber: Integer(default:1)
+```
+
+Response
+
+```json
+{
+   "status": true,
    "response": [
       {
-         "id": 6,
-         "name": "Nikhil",
-         "rollNo": 6,
-         "admissionDate": "2016-05-13T00:00:00.000Z",
-         "active": true,
-         "createdAt": "2018-08-10T21:39:28.170Z",
-         "updatedAt": "2018-08-11T00:13:32.923Z",
-         "SemesterClassId": 1,
-         "SemesterClass": {
-            "id": 1,
-            "title": "One",
-            "createdAt": "2018-08-10T23:49:56.758Z",
-            "updatedAt": "2018-08-10T23:49:56.758Z",
-            "ProfessorId": null
+         "id": 5,
+         "title": "Five",
+         "createdAt": "2018-08-10T23:50:21.162Z",
+         "updatedAt": "2018-08-11T05:21:06.118Z",
+         "ProfessorId": 5,
+         "Professor": {
+            "id": 5,
+            "name": "Sameer",
+            "universityStaffNo": "5",
+            "designation": "Applied Science",
+            "createdAt": "2018-08-10T21:29:36.819Z",
+            "updatedAt": "2018-08-10T21:29:36.823Z"
          }
       },
       {
-         "id": 5,
-         "name": "Tushar",
-         "rollNo": 5,
-         "admissionDate": "2016-05-09T00:00:00.000Z",
-         "active": true,
-         "createdAt": "2018-08-10T21:39:11.349Z",
-         "updatedAt": "2018-08-11T00:13:32.923Z",
-         "SemesterClassId": 1,
-         "SemesterClass": {
-            "id": 1,
-            "title": "One",
-            "createdAt": "2018-08-10T23:49:56.758Z",
-            "updatedAt": "2018-08-10T23:49:56.758Z",
-            "ProfessorId": null
+         "id": 4,
+         "title": "Four",
+         "createdAt": "2018-08-10T23:50:15.838Z",
+         "updatedAt": "2018-08-11T05:20:58.836Z",
+         "ProfessorId": 4,
+         "Professor": {
+            "id": 4,
+            "name": "Sameer",
+            "universityStaffNo": "4",
+            "designation": "Applied Science",
+            "createdAt": "2018-08-10T21:29:32.422Z",
+            "updatedAt": "2018-08-10T21:29:32.426Z"
          }
       },
       {
          "id": 3,
-         "name": "Vipin",
-         "rollNo": 3,
-         "admissionDate": "2016-04-01T00:00:00.000Z",
-         "active": true,
-         "createdAt": "2018-08-10T21:38:46.016Z",
-         "updatedAt": "2018-08-11T00:13:32.923Z",
-         "SemesterClassId": 1,
-         "SemesterClass": {
-            "id": 1,
-            "title": "One",
-            "createdAt": "2018-08-10T23:49:56.758Z",
-            "updatedAt": "2018-08-10T23:49:56.758Z",
-            "ProfessorId": null
+         "title": "Three",
+         "createdAt": "2018-08-10T23:50:08.920Z",
+         "updatedAt": "2018-08-11T05:20:50.438Z",
+         "ProfessorId": 3,
+         "Professor": {
+            "id": 3,
+            "name": "Sameer",
+            "universityStaffNo": "3",
+            "designation": "Applied Science",
+            "createdAt": "2018-08-10T21:29:27.739Z",
+            "updatedAt": "2018-08-10T21:29:27.826Z"
          }
          .
          .
          .
+    }
+```
+
+# Get Class Students
+
+```sh
+url: /students/:id/classes
+method: GET
+filter available:
+        id: Integer(Class id )
+        pageSize: Integer(Elements per page. default:20)
+        pageNumber: Integer(default:1)
+example:  /api/students/2/classes    
+```
+Response
+
+```json
+{
+   "status": true,
+   "response": [
+      {
+         "id": 2,
+         "title": "Two",
+         "createdAt": "2018-08-10T23:50:03.717Z",
+         "updatedAt": "2018-08-11T05:20:41.807Z",
+         "ProfessorId": 2,
+         "Professor": {
+            "id": 2,
+            "name": "Sameer",
+            "universityStaffNo": "2",
+            "designation": "Applied Science",
+            "createdAt": "2018-08-10T21:27:45.425Z",
+            "updatedAt": "2018-08-10T21:27:45.431Z"
+         },
+         "Students": [
+            {
+               "id": 2,
+               "name": "Akshay",
+               "rollNo": 2,
+               "admissionDate": "2016-04-15T00:00:00.000Z",
+               "active": true,
+               "createdAt": "2018-08-10T21:38:25.878Z",
+               "updatedAt": "2018-08-11T05:30:44.970Z",
+               "SemesterClassId": 2
+            },
+            {
+               "id": 4,
+               "name": "Tarun",
+               "rollNo": 4,
+               "admissionDate": "2016-05-03T00:00:00.000Z",
+               "active": true,
+               "createdAt": "2018-08-10T21:38:58.552Z",
+               "updatedAt": "2018-08-11T05:30:44.970Z",
+               "SemesterClassId": 2
+            },
+            {
+               "id": 8,
+               "name": "Himanshu",
+               "rollNo": 8,
+               "admissionDate": "2016-05-19T00:00:00.000Z",
+               "active": true,
+               "createdAt": "2018-08-10T21:40:11.140Z",
+               "updatedAt": "2018-08-11T05:30:44.970Z",
+               "SemesterClassId": 2
+            }
+         ]
+      }
+   ]
 }
 ```
+
